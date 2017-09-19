@@ -3,6 +3,8 @@ from HistogramDrawer import HistogramDrawer
 from Lemer import LemerGenerator
 from SimpsonDistributionGenerator import SimpsonDistributionGenerator
 from TriangleDistributionGenerator import TriangleDistributionType, TriangleDistributionGenerator
+from UniformDistributionGenerator import UniformDistributionGenerator
+from GaussianDistributionGenerator import GausianDistributionGenerator
 
 
 def print_distribution_params(vect):
@@ -44,11 +46,25 @@ def run_simpson_distribution():
 
 
 def run_uniform_distribution():
-    pass
+    lemer_generator = LemerGenerator(209715120, 7, 3)
+    a = int(input('a: '))
+    b = int(input('b: '))
+    generator = UniformDistributionGenerator(a, b, lemer_generator)
+    count = int(input('Count: '))
+    vect = [generator.__next__() for i in range(count)]
+    print_distribution_params(vect)
+    make_histogram(vect)
 
 
 def run_gaussian_distribution():
-    pass
+    lemer_generator = LemerGenerator(209715120, 7, 3)
+    m = int(input('m: '))
+    sigma = int(input('sigma: '))
+    generator = GausianDistributionGenerator(m, sigma, lemer_generator)
+    count = int(input('Count: '))
+    vect = [generator.__next__() for i in range(count)]
+    print_distribution_params(vect)
+    make_histogram(vect)
 
 
 def run_exponential_distribution():
