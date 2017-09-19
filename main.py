@@ -22,7 +22,9 @@ def make_histogram(vect):
 def run_triangle_distribution(distribution_type):
     lemer_generator1 = LemerGenerator(209715120, 7, 3)
     lemer_generator2 = LemerGenerator(209715120, 3, 7)
-    generator = TriangleDistributionGenerator(0, 1, distribution_type, lemer_generator1, lemer_generator2)
+    a = int(input('a: '))
+    b = int(input('b: '))
+    generator = TriangleDistributionGenerator(a, b, distribution_type, lemer_generator1, lemer_generator2)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
     print_distribution_params(vect)
@@ -32,7 +34,9 @@ def run_triangle_distribution(distribution_type):
 def run_simpson_distribution():
     lemer_generator1 = LemerGenerator(209715120, 7, 3)
     lemer_generator2 = LemerGenerator(209715120, 3, 7)
-    generator = SimpsonDistributionGenerator(0, 1, lemer_generator1, lemer_generator2)
+    a = int(input('a: '))
+    b = int(input('b: '))
+    generator = SimpsonDistributionGenerator(a, b, lemer_generator1, lemer_generator2)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
     print_distribution_params(vect)
