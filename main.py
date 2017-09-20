@@ -1,4 +1,6 @@
 from DistributionParamsCalculator import DistributionParamsCalculator, DistributionParams
+from ExponentialDistributionGenerator import ExponentialDistributionGenerator
+from GammaDistributionGenerator import GammaDistributionGenerator
 from HistogramDrawer import HistogramDrawer
 from Lemer import LemerGenerator
 from SimpsonDistributionGenerator import SimpsonDistributionGenerator
@@ -68,11 +70,24 @@ def run_gaussian_distribution():
 
 
 def run_exponential_distribution():
-    pass
-
+    lemer_generator = LemerGenerator(209715120, 7, 3)
+    lyambda = int(input('lambda: '))
+    generator = ExponentialDistributionGenerator(lyambda, lemer_generator)
+    count = int(input('Count: '))
+    vect = [generator.__next__() for i in range(count)]
+    print_distribution_params(vect)
+    make_histogram(vect)
 
 def run_gamma_distribution():
-    pass
+    lemer_generator = LemerGenerator(209715120, 7, 3)
+    lyambda = int(input('lambda: '))
+    exp_generator = ExponentialDistributionGenerator(lyambda, lemer_generator)
+    eta = int(input('eta: '))
+    generator = GammaDistributionGenerator(eta, exp_generator)
+    count = int(input('Count: '))
+    vect = [generator.__next__() for i in range(count)]
+    print_distribution_params(vect)
+    make_histogram(vect)
 
 
 DISTRIBUTION_CASES = {
