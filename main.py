@@ -26,8 +26,8 @@ def make_histogram(vect):
 def run_triangle_distribution(distribution_type):
     lemer_generator1 = LemerGenerator(209715120, 7, 3)
     lemer_generator2 = LemerGenerator(209715120, 3, 7)
-    a = int(input('a: '))
-    b = int(input('b: '))
+    a = float(input('a: '))
+    b = float(input('b: '))
     generator = TriangleDistributionGenerator(a, b, distribution_type, lemer_generator1, lemer_generator2)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
@@ -36,11 +36,13 @@ def run_triangle_distribution(distribution_type):
 
 
 def run_simpson_distribution():
+    a = float(input('a: '))
+    b = float(input('b: '))
     lemer_generator1 = LemerGenerator(209715120, 7, 3)
     lemer_generator2 = LemerGenerator(209715120, 3, 7)
-    a = int(input('a: '))
-    b = int(input('b: '))
-    generator = SimpsonDistributionGenerator(a, b, lemer_generator1, lemer_generator2)
+    uniform_generator1 = UniformDistributionGenerator(a / 2, b / 2, lemer_generator1)
+    uniform_generator2 = UniformDistributionGenerator(a / 2, b / 2, lemer_generator2)
+    generator = SimpsonDistributionGenerator(uniform_generator1, uniform_generator2)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
     print_distribution_params(vect)
@@ -49,8 +51,8 @@ def run_simpson_distribution():
 
 def run_uniform_distribution():
     lemer_generator = LemerGenerator(209715120, 7, 3)
-    a = int(input('a: '))
-    b = int(input('b: '))
+    a = float(input('a: '))
+    b = float(input('b: '))
     generator = UniformDistributionGenerator(a, b, lemer_generator)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
@@ -60,8 +62,8 @@ def run_uniform_distribution():
 
 def run_gaussian_distribution():
     lemer_generator = LemerGenerator(209715120, 7, 3)
-    m = int(input('m: '))
-    sigma = int(input('sigma: '))
+    m = float(input('m: '))
+    sigma = float(input('sigma: '))
     generator = GausianDistributionGenerator(m, sigma, lemer_generator)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
@@ -71,7 +73,7 @@ def run_gaussian_distribution():
 
 def run_exponential_distribution():
     lemer_generator = LemerGenerator(209715120, 7, 3)
-    lyambda = int(input('lambda: '))
+    lyambda = float(input('lambda: '))
     generator = ExponentialDistributionGenerator(lyambda, lemer_generator)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
@@ -80,9 +82,9 @@ def run_exponential_distribution():
 
 def run_gamma_distribution():
     lemer_generator = LemerGenerator(209715120, 7, 3)
-    lyambda = int(input('lambda: '))
+    lyambda = float(input('lambda: '))
     exp_generator = ExponentialDistributionGenerator(lyambda, lemer_generator)
-    eta = int(input('eta: '))
+    eta = float(input('eta: '))
     generator = GammaDistributionGenerator(eta, exp_generator)
     count = int(input('Count: '))
     vect = [generator.__next__() for i in range(count)]
