@@ -7,4 +7,4 @@ class GammaDistributionGenerator:
         return self
 
     def __next__(self):
-        return sum([next(self._generator) for i in range(self._eta)])
+        return sum([next(self._generator) for i in range(round(self._eta))])

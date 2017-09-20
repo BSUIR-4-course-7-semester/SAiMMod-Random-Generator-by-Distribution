@@ -8,6 +8,6 @@ class UniformDistributionGenerator:
         return self
 
     def __next__(self):
-        return self._a + (self._a+self._b) * next(self._generator)
+        return self._a + (self._b - self._a) * next(self._generator)
 
 
